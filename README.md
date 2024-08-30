@@ -34,6 +34,15 @@ https://git-scm.com/downloads/
   cd spark-cluster-multi-node-setup
   ```
   
+* Create a local virtual environment for installing all dependencies and activate it:
+  ```
+  python -m venv venv # windows
+  venv\Scripts\activate # windows
+  
+  python3 -m venv venv # macOS
+  source venv/bin/activate # macOS
+  ```
+
 
 * Install the necessary Python dependencies listed in the requirements.txt file::
   ```
