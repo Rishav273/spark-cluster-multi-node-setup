@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/f2d90a13-94e3-4c9b-91e3-8b74d8b0e85f)
+<img src="https://github.com/user-attachments/assets/f2d90a13-94e3-4c9b-91e3-8b74d8b0e85f" alt="Image description" width="900" />
 
 
 ## Setting Up a Multi-Node Spark Cluster Locally Using Docker and Docker Compose
