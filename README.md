@@ -1,3 +1,6 @@
+![image](https://github.com/user-attachments/assets/f2d90a13-94e3-4c9b-91e3-8b74d8b0e85f)
+
+
 ## Setting Up a Multi-Node Spark Cluster Locally Using Docker and Docker Compose
 
 This guide will walk you through setting up a multi-node Apache Spark cluster locally using Docker and Docker Compose. Follow the steps below to get started.
