@@ -83,6 +83,9 @@ Additionally, custom scripts can be created and added to this directory as neede
 
 ### Run commands:
 All run commands are available in the ```commands.sh``` file. 
+
+### Cluster Configurations:
+Changes to the cluster can be made by modifying the ```docker-compose.yml``` file. For instance, you can increase the number of workers by adding more instances of the worker configuration in the file.
   
 ### Conclusion
 You have successfully set up a multi-node Spark cluster locally using Docker and Docker Compose. You can now use this environment for simulating distributed data processing activities.
