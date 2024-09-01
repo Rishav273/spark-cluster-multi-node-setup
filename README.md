@@ -70,7 +70,11 @@ https://git-scm.com/downloads/
 
 * Additional configurations:
 
-  - All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder. This folder should be mounted to each container using Docker volumes, as specified in the docker-  compose.yml file.
+  - All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder.
+  ```
+  mkdir secrets
+  ```
+  - This folder should be mounted to each container using Docker volumes, as specified in the docker-  compose.yml file.
   - In the config.py file present in the config sub-directory (in the scripts directory), paths for the bucket_name, files and service account file path will be given. These can be changed as required.
 
 
