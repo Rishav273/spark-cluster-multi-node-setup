@@ -15,7 +15,7 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./scripts:/scripts
-      - ./secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json:/secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json
+      - ./secrets:/secrets
 
   spark-worker-1:
     build: .
@@ -32,7 +32,7 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json:/secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json
+      - ./secrets:/secrets
 
   spark-worker-2:
     build: .
@@ -49,8 +49,7 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json:/secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json
-
+      - ./secrets:/secrets
   spark-worker-3:
     build: .
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
@@ -66,4 +65,4 @@ services:
       - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
       - SPARK_SSL_ENABLED=no
     volumes:
-      - ./secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json:/secrets/spatial-encoder-433413-r0-e8a0dfd3124d.json
+      - ./secrets:/secrets

@@ -3,6 +3,7 @@ FROM openjdk:11-jre-slim
 ENV SPARK_VERSION=3.3.2
 ENV HADOOP_VERSION=3
 ENV GCS_CONNECTOR_VERSION=2.2.5
+ENV AWS_VERSION=1.35.10
 
 RUN apt-get update && \
     apt-get install -y wget python3 python3-pip && \
@@ -22,5 +23,6 @@ ENV PATH=$PATH:$SPARK_HOME/bin
 
 WORKDIR /spark
 
-# Install PySpark
-RUN pip3 install pyspark==${SPARK_VERSION}
+# install requirements.txt
+COPY requirements.txt /requirements.txt
+RUN pip3 install -r /requirements.txt
