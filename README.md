@@ -52,8 +52,12 @@ https://git-scm.com/downloads/
   
 * Use Docker Compose to bring up the Spark cluster in detached mode. This will start all the containers defined in the docker-compose.yml file::
   ```
-  docker-compose up -d
+  docker-compose up --build -d  # Run this command the first time to build and start the cluster.
+  docker-compose up -d          # Use this command to start the cluster after the initial build (not needed immediately after the first build since the cluster will already be running).
+  docker-compose stop           # Stop the running cluster.
+  docker-compose down           # Shut down and remove all containers in the cluster.
   ```
+
   The -d flag runs the containers in detached mode, meaning they will run in the background.
   
 
@@ -66,7 +70,8 @@ https://git-scm.com/downloads/
 
 * Additional configurations:
 
-  All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder. This folder should be mounted to each container using Docker volumes, as specified in the docker-compose.yml file.
+  - All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder. This folder should be mounted to each container using Docker volumes, as specified in the docker-  compose.yml file.
+  - In the config.py file present in the config sub-directory (in the scripts directory), paths for the bucket_name, files and service account file path will be given. These can be changed as required.
 
 
 #### Note
