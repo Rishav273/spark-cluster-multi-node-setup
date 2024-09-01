@@ -80,6 +80,9 @@ In the ```scripts``` directory, there are Python scripts with PySpark code, incl
 - ```read_from_gcp.py``` -> An application that reads files from a Google Cloud Storage (GCS) bucket and performs aggregations on the data.
 
 Additionally, custom scripts can be created and added to this directory as needed.
+
+### Run commands:
+All run commands are available in the ```commands.sh``` file. 
   
 ### Conclusion
 You have successfully set up a multi-node Spark cluster locally using Docker and Docker Compose. You can now use this environment for simulating distributed data processing activities.
