@@ -43,6 +43,15 @@ https://git-scm.com/downloads/
   source venv/bin/activate # macOS
   ```
 
+* Additional configurations:
+
+  - All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder.
+  ```
+  mkdir secrets
+  ```
+  - This folder should be mounted to each container using Docker volumes, as specified in the docker-  compose.yml file.
+  - In the config.py file present in the config sub-directory (in the scripts directory), paths for the bucket_name, files and service account file path will be given. These can be changed as required.
+
 
 * Install the necessary Python dependencies listed in the requirements.txt file::
   ```
@@ -66,16 +75,6 @@ https://git-scm.com/downloads/
   http://localhost:8080/
   ```
   You should see the Spark master web interface, indicating that your multi-node Spark cluster is running correctly.
-
-
-* Additional configurations:
-
-  - All secret keys, credentials, and other sensitive information should be stored in a dedicated secrets folder.
-  ```
-  mkdir secrets
-  ```
-  - This folder should be mounted to each container using Docker volumes, as specified in the docker-  compose.yml file.
-  - In the config.py file present in the config sub-directory (in the scripts directory), paths for the bucket_name, files and service account file path will be given. These can be changed as required.
 
 
 #### Note
