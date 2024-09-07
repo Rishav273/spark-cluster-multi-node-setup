@@ -6,6 +6,7 @@ services:
     ports:
       - "8080:8080"
       - "7077:7077"
+      - "4042:4042" # exposed a range of ports for the Spark UI
     environment:
       - SPARK_MODE=master
       - SPARK_MASTER_MEMORY=512M
@@ -16,12 +17,17 @@ services:
     volumes:
       - ./scripts:/scripts
       - ./secrets:/secrets
+      - ./files:/files
+      - ./notebooks:/notebooks
 
   spark-worker-1:
     build: .
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
       - spark-master
+    ports:
+      - "4043:4043"  # Expose a range of ports for Spark Application UIs
+
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=1
@@ -33,12 +39,15 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./secrets:/secrets
+      - ./files:/files
 
   spark-worker-2:
     build: .
     command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
     depends_on:
       - spark-master
+    ports:
+      - "4044:4044" 
     environment:
       - SPARK_MODE=worker
       - SPARK_WORKER_CORES=1
@@ -50,19 +59,23 @@ services:
       - SPARK_SSL_ENABLED=no
     volumes:
       - ./secrets:/secrets
-  spark-worker-3:
-    build: .
-    command: bin/spark-class org.apache.spark.deploy.worker.Worker spark://spark-master:7077
-    depends_on:
-      - spark-master
-    environment:
-      - SPARK_MODE=worker
-      - SPARK_WORKER_CORES=1
-      - SPARK_WORKER_MEMORY=1G
-      - SPARK_MASTER_URL=spark://spark-master:7077
-      - SPARK_RPC_AUTHENTICATION_ENABLED=no
-      - SPARK_RPC_ENCRYPTION_ENABLED=no
-      - SPARK_LOCAL_STORAGE_ENCRYPTION_ENABLED=no
-      - SPARK_SSL_ENABLED=no
-    volumes:
-      - ./secrets:/secrets
+      - ./files:/files
+
+
+  # jupyter:
+  #   image: jupyter/pyspark-notebook:spark-3.3.2
+  #   container_name: jupyter
+  #   ports:
+  #     - "8888:8888"  # Jupyter Notebook port
+  #     - "4041:4040"  # Spark UI port
+  #   environment:
+  #     - SPARK_MASTER_URL=spark://spark-master:7077  # Connect Jupyter to Spark master
+  #     - PYSPARK_PYTHON=python3
+  #     - JUPYTER_ENABLE_LAB=no  # Disable JupyterLab and use Jupyter Notebook
+  #   command: start-notebook.sh --NotebookApp.token=''  # Start Jupyter Notebook without token authentication
+  #   volumes:
+  #     - ./secrets:/home/jovyan/work/secrets
+  #     - ./notebooks:/home/jovyan/work/notebooks
+  #     - ./notebooks/files:/home/jovyan/work/notebooks/files
+  #   depends_on:
+  #     - spark-master
