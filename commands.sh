@@ -14,9 +14,6 @@ docker exec -it spark-cluster-spark-master-1 /spark/bin/spark-submit /scripts/re
 # start jupyter notebook
 docker exec -it spark-cluster-jupyter-1 jupyter notebook list
 
-
-## BROWSER UI
-
 # spark master
 http://localhost:8080
 
